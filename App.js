@@ -1,36 +1,101 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Image, Alert, Platform, StyleSheet, Text, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, View } from 'react-native';
 
-export default class LotsOfStyles extends Component {
+export default class Touchables extends Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
+  _onLongPressButton() {
+    Alert.alert('You long-pressed the button!')
+  }
+
+
   render() {
     return (
-      <View style={{heihgt: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}} >
-      <View style={{flex: 1, flexDirection: 'column'}}>
-        <View style={{width: 200, height: 200, backgroundColor: 'powderblue',...styles.center}} >
-        <Text style={styles.red}>just red</Text>
-        </View>
-        <View style={{width: 200, height: 200, backgroundColor: 'skyblue',...styles.center}} >
-        <Text style={styles.bigBlue}>just bigBlue</Text>
-        </View>
-        <View style={{width: 200, height: 200, backgroundColor: 'steelblue',...styles.center}} >
-        <Text style={[styles.bigBlue, styles.red]}>bigBlue, then red</Text>
-        </View>
-      </View>
+      <View style={styles.container}>
+        <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableHighlight</Text>
+          </View>
+        </TouchableHighlight>
+        <TouchableOpacity onPress={this._onPressButton}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableOpacity</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableNativeFeedback
+            onPress={this._onPressButton}
+            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableNativeFeedback</Text>
+          </View>
+        </TouchableNativeFeedback>
+        <TouchableWithoutFeedback
+            onPress={this._onPressButton}
+            >
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>TouchableWithoutFeedback</Text>
+          </View>
+        </TouchableWithoutFeedback>
+        <TouchableHighlight onPress={this._onPressButton} onLongPress={this._onLongPressButton} underlayColor="white">
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Touchable with Long Press</Text>
+          </View>
+        </TouchableHighlight>
+
+        <ScrollView>
+          <Text style={{fontSize:96}}>Scroll me plz</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>If you like</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>Scrolling down</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>What's the best</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:96}}>Framework around?</Text>
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+          <Text style={{fontSize:80}}>React Native</Text>
+        </ScrollView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  center:{
-    display: 'flex', alignItems: 'center', justifyContent: 'center'
+  container: {
+    paddingTop: 60,
+    alignItems: 'center'
   },
-  bigBlue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
+  button: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: 'center',
+    backgroundColor: '#2196F3'
   },
-  red: {
-    color: 'red',
-  },
-});
+  buttonText: {
+    textAlign: 'center',
+    padding: 20,
+    color: 'white'
+  }
+})
